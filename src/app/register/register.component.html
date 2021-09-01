@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="container mt-4 shadow col-md-6 offset-md-3 p-5">
+
+    <form>
+
+        <h3 class="text-center mb-3">REGISTER</h3>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Admission Number</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">University</label>
+            <select class="form-select">
+                <option>Maseno</option>
+                <option>UON</option>
+                <option>Masinde Muliro</option>
+                <option>Moi</option>
+            </select>
+        </div>
+
+        <a [routerLink]="['/login']">Already have an account? Login</a>
+        <button class="btn btn-success btn-sm float-end">REGISTER</button>
+
+    </form>
+
+</div>
