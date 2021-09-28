@@ -1,4 +1,5 @@
-# Ivoting
+# i-Voting
+This is a web app that allows students to vote for their leaders at the comfort of their homes. It aims to eradicate the manual system which has it's own fair share of cons along.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
 
