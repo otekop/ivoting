@@ -1,13 +1,13 @@
 <div class="container col-md-6 shadow p-5 offset-md-3 mt-3">
-  <form>
+  <form [formGroup]="userData" (ngSubmit)="login()">
     <h3 class="text-center mb-3">LOGIN</h3>
     <div class="mb-3">
       <label class="form-label">Email</label>
-      <input type="email" class="form-control" name="email" id="" />
+      <input formControlName="email" type="email" class="form-control" name="email"  />
     </div>
     <div class="mb-3">
       <label class="form-label">Password</label>
-      <input type="password" class="form-control" name="password" id="" />
+      <input formControlName="password" type="password" class="form-control" name="password"  />
     </div>
     <div class="mb-3">
       <a [routerLink]="['/register']">No Account? Register!</a>

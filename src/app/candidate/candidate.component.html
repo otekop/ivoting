@@ -15,10 +15,11 @@
             <tr *ngFor="let candidate of candidates">
                 <td>{{candidate.name}}</td>
                 <td>{{candidate.university}}</td>
-                <td>{{candidate.post}}</td>
+                <td>{{candidate.position}}</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check"></i> APPROVE</button>
-                    <button type="button" class="btn btn-danger btn-sm m-3"> <i class="fa fa-times"></i> REJECT</button>
+                    <button *ngIf="candidate.status=='PENDING' || candidate.status=='REJECTED'" type="button" (click)="approve(candidate)" class="btn btn-success btn-sm"><i class="fa fa-check"></i> APPROVE</button>
+                    <button *ngIf="candidate.status=='APPROVED'" type="button" (click)="suspend(candidate)" class="btn btn-danger btn-sm"> <i class="fa fa-times"></i> SUSPEND</button>
+                    <button *ngIf="candidate.status=='PENDING'" type="button" (click)="reject(candidate)" class="btn btn-warning btn-sm mx-3"><i class="fa fa-times"></i> REJECT</button>
                 </td>
             </tr>
         </tbody>

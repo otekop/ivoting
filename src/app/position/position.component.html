@@ -1,0 +1,33 @@
+<div class="container mt-3">
+
+    <h3 class="text-center mb-3">Manage Positions</h3>
+
+    <div class="row g-3">
+        <div class="col">
+            <input placeholder="position name" [(ngModel)]="positionName" name="name" type="text" class="form-control">
+        </div>
+        <div class="col">
+            <button [disabled]="!positionName" (click)="addPosition()" type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Position</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let position of positions">
+                <th scope="row">{{position.id}}</th>
+                <td>{{position.name}}</td>
+                <td><button (click)="deletePosition(position.id)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> DELETE POSITION</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <swal #confirmPositionDeletion title="Successfully Deleted Position" text="Position was successfully deleted"
+        icon="success" [timer]="1500" position='top-end'></swal>
+</div>

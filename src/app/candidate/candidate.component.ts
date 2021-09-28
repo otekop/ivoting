@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CandidatesService } from '../services/candidates.service';
 
 @Component({
   selector: 'app-candidate',
@@ -7,32 +9,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidateComponent implements OnInit {
 
-  candidates = [
-    {
-      "name":"Yegon",
-      "university":"Maseno",
-      "post":"SG"
-    },
-    {
-      "name":"Oteko",
-      "university":"Maseno",
-      "post":"SG"
-    },
-    {
-      "name":"Ronny",
-      "university":"Maseno",
-      "post":"SG"
-    },
-    {
-      "name":"Dan",
-      "university":"Maseno",
-      "post":"President"
-    }
-  ]
+  candidates : any;
 
-  constructor() { }
+  constructor(
+    private route:ActivatedRoute,
+    private candidateService:CandidatesService
+  ) { }
+  
+  approve(candidate:any){
+    candidate.status = "APPROVED";
+
+    this.candidateService.changeState(candidate).subscribe(
+      (res)=>{
+        this.ngOnInit();
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  reject(candidate:any){
+    candidate.status = "REJECTED";
+
+    this.candidateService.changeState(candidate).subscribe(
+      (res)=>{
+        this.ngOnInit();
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  suspend(candidate:any){
+    candidate.status = "PENDING";
+
+    this.candidateService.changeState(candidate).subscribe(
+      (res)=>{
+        this.ngOnInit();
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
 
   ngOnInit(): void {
+
+    // this.candidateService.getAllByUniversity(this.route.snapshot.paramMap.get('id')+"").subscribe(
+    //   (res)=>{
+    //     this.candidates = res;
+    //     console.log(res);
+    //   },
+    //   (err)=>{
+    //     console.log(err);
+    //   }
+    // )
+
+    this.candidateService.getAll().subscribe(
+      (res)=>{
+        this.candidates = res;
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
   }
 
 }
