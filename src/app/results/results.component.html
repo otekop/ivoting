@@ -1,0 +1,22 @@
+<div class="container mt-3">
+
+    <div class="mt-3 mb-3" *ngFor="let result of resultSet">
+        <h6>{{result.position}}</h6>
+        <table class="table">
+            <!-- <p>{{result.position}}</p> -->
+            <thead>
+                <tr>
+                    <th scope="col">Candidate Name</th>
+                    <th scope="col">Vote Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let candidate of result.candidates">
+                    <th scope="row">{{candidate.name}}</th>
+                    <td>{{candidate.voteCount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

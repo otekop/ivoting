@@ -13,6 +13,8 @@ import { PositionComponent } from './position/position.component';
 import { NavComponent } from './nav/nav.component';
 import { UniversitiesComponent } from './universities/universities.component';
 import { InterceptorService } from './services/interceptor.service';
+import { VoteComponent } from './vote/vote.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { InterceptorService } from './services/interceptor.service';
     CandidateComponent,
     PositionComponent,
     NavComponent,
-    UniversitiesComponent
+    UniversitiesComponent,
+    VoteComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

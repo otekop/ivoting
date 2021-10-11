@@ -9,38 +9,72 @@ import { UniversityService } from '../services/university.service';
 })
 export class UniversitiesComponent implements OnInit {
 
-  universities:any;
+  universities: any;
 
-  universityName!:string;
+  universityName!: string;
 
-  universityCode!:string;
+  universityCode!: string;
 
-  @ViewChild('confirmUniversityAddition') 
-  public readonly confirmUniversityAddition!:SwalComponent;
+  @ViewChild('confirmUniversityAddition')
+  public readonly confirmUniversityAddition!: SwalComponent;
+
+  @ViewChild('confirmCloseElection')
+  public readonly confirmCloseElection!: SwalComponent;
+
+  @ViewChild('confirmOpenElection')
+  public readonly confirmOpenElection!: SwalComponent;
 
   constructor(
-    private universityService:UniversityService
+    private universityService: UniversityService
   ) { }
 
-  addUniversity(){
+  addUniversity() {
     const data = {
-      name : this.universityName,
-      code : this.universityCode
+      name: this.universityName,
+      code: this.universityCode
     }
 
     this.universityService.save(data).subscribe(
-      (res)=>{
+      (res) => {
         this.universities.push(res);
         this.confirmUniversityAddition.fire();
         this.clearForm();
       },
-      (err)=>{
+      (err) => {
         console.log(err);
       }
     )
   }
 
-  clearForm(){
+  closeElection(university: any) {
+    university.isOpen = false;
+
+    this.universityService.changeState(university).subscribe(
+      (res) => {
+        university = res.data;
+        this.confirmCloseElection.fire();
+      },
+      (err) => {
+
+      }
+    )
+  }
+
+  openElection(university: any) {
+    university.isOpen = true;
+
+    this.universityService.changeState(university).subscribe(
+      (res) => {
+        university = res.data;
+        this.confirmOpenElection.fire();
+      },
+      (err) => {
+
+      }
+    )
+  }
+
+  clearForm() {
     this.universityName = '';
     this.universityCode = '';
   }
@@ -48,10 +82,10 @@ export class UniversitiesComponent implements OnInit {
   ngOnInit(): void {
 
     this.universityService.getUniversities().subscribe(
-      (res)=>{
+      (res) => {
         this.universities = res;
       },
-      (err)=>{
+      (err) => {
         console.log(err);
       }
     )

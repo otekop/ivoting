@@ -1,0 +1,25 @@
+<div class="container">
+    <div *ngIf="!user?.hasVoted">
+        <h2 class="text-center">{{activePosition}}</h2>
+        <div class="card p-3 mb-3 mt-3">
+            <div class="form-check" *ngFor="let candidate of voterData">
+                <input class="form-check-input" [(ngModel)]="candidateChoice" value="{{candidate.id}}" type="radio"
+                    name="{{candidate.name}}" id="{{candidate.name}}">
+                <label class="form-check-label" for="{{candidate.name}}">
+                    {{candidate.name}}
+                </label>
+            </div>
+        </div>
+        <button *ngIf="!endOfList" (click)="next()" type="button" class="btn btn-primary btn-sm pull-right"><i
+                class="fa fa-arrow-right"></i> NEXT</button>
+        <button *ngIf="endOfList" (click)="submitVote()" type="button" class="btn btn-primary btn-sm pull-right"><i
+                class="fa fa-check"></i> SUBMIT VOTE</button>
+    </div>
+
+    <div>
+        <div class="jumbotron mt-3">
+            <p>You have already voted for your candidates</p>
+
+        </div>
+    </div>
+</div>

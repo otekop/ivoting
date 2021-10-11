@@ -2,14 +2,16 @@
 
     <div class="row g-3">
         <div class="col">
-            <input placeholder="university name" [(ngModel)]="universityName" name="name" type="text" class="form-control">
+            <input placeholder="university name" [(ngModel)]="universityName" name="name" type="text"
+                class="form-control">
         </div>
         <div class="col">
-            <input placeholder="university code" [(ngModel)]="universityCode" name="code" type="text" class="form-control">
+            <input placeholder="university code" [(ngModel)]="universityCode" name="code" type="text"
+                class="form-control">
         </div>
         <div class="col">
-            <button [disabled]="!universityName || !universityCode" (click)="addUniversity()" type="button" class="btn btn-sm btn-primary"><i
-                    class="fa fa-plus"></i> Add University</button>
+            <button [disabled]="!universityName || !universityCode" (click)="addUniversity()" type="button"
+                class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add University</button>
         </div>
     </div>
 
@@ -19,6 +21,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Code</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +29,26 @@
                 <th scope="row">{{university.id}}</th>
                 <td>{{university.name}}</td>
                 <td>{{university.code}}</td>
+                <td>
+                    <button
+                        [swal]="{ title: 'Are you sure you want to close election?', icon:'question', showDenyButton: true, denyButtonText: 'No', confirmButtonText:'Yes', focusConfirm:true}"
+                        (confirm)="closeElection(university)" *ngIf="university.isOpen"
+                        class="btn btn-danger btn-sm">CLOSE ELECTION</button>
+                    <button
+                        [swal]="{ title: 'Are you sure you want to open election?', icon:'question', showDenyButton: true, denyButtonText: 'No', confirmButtonText:'Yes', focusConfirm:true}"
+                        (confirm)="openElection(university)" *ngIf="!university.isOpen"
+                        class="btn btn-success btn-sm">OPEN ELECTION</button>
+                </td>
             </tr>
         </tbody>
     </table>
 
     <swal #confirmUniversityAddition title="Successfully Added University" text="University was successfully saved"
+        icon="success" [timer]="1500" position='top-end'></swal>
+
+    <swal #confirmCloseElection title="Successfully Closed Election" text="Election was successfully closed"
+        icon="success" [timer]="1500" position='top-end'></swal>
+
+    <swal #confirmOpenElection title="Successfully Opened Election" text="Election was successfully opened"
         icon="success" [timer]="1500" position='top-end'></swal>
 </div>

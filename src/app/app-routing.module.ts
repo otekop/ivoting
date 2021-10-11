@@ -4,37 +4,47 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { LoginComponent } from './login/login.component';
 import { PositionComponent } from './position/position.component';
 import { RegisterComponent } from './register/register.component';
+import { ResultsComponent } from './results/results.component';
 import { UniversitiesComponent } from './universities/universities.component';
+import { VoteComponent } from './vote/vote.component';
 
 const routes: Routes = [
   {
-    path:"login",
+    path: "login",
     component: LoginComponent
   },
   {
-    path:"register",
+    path: "register",
     component: RegisterComponent
   },
   {
-    path:"candidate",
-    component:CandidateComponent
+    path: "candidate",
+    component: CandidateComponent
   },
   {
-    path:"positions",
-    component:PositionComponent
+    path: "positions",
+    component: PositionComponent
   },
   {
-    path:"candidates/:id",
-    component:CandidateComponent
+    path: "candidates/:id",
+    component: CandidateComponent
   },
   {
-    path:"universities",
-    component:UniversitiesComponent
+    path: "universities",
+    component: UniversitiesComponent
   },
   {
-    path:'',
-    redirectTo:'login',
-    pathMatch:'full'
+    path: "vote",
+    component: VoteComponent
+  },
+  {
+    path: "results",
+    component: ResultsComponent
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];
 

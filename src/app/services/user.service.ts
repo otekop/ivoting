@@ -39,7 +39,7 @@ export class UserService {
   }
 
   saveUser(user: any) {
-    localStorage.setItem(Constants.userKey, user);
+    localStorage.setItem(Constants.userKey, JSON.stringify(user));
   }
 
   removeUser() {
@@ -47,7 +47,15 @@ export class UserService {
   }
 
   getUserFromStorage() {
-    return localStorage.getItem(Constants.userKey);
+    return JSON.parse(localStorage.getItem(Constants.userKey)+"");
+  }
+
+  updateUserToVotedInStorage(){
+    const user = this.getUserFromStorage();
+
+    user.hasVoted = true;
+
+    this.saveUser(user);
   }
 
   changePassword(data: any): Observable<any> {

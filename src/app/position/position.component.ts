@@ -22,7 +22,8 @@ export class PositionComponent implements OnInit {
 
   addPosition() {
     const data = {
-      name : this.positionName
+      name : this.positionName,
+      university: JSON.parse(localStorage.getItem('user') + "").universityName
     }
 
     this.positionService.save(data).subscribe(

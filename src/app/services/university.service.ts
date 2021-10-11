@@ -19,4 +19,8 @@ export class UniversityService {
   save(data:any):Observable<any>{
     return this.http.post(Constants.baseUrl+"universities",data);
   }
+
+  changeState(data:any):Observable<any>{
+    return this.http.post(Constants.baseUrl+"universities/change-state",data);
+  }
 }

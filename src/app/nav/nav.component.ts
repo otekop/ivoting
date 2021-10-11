@@ -10,6 +10,8 @@ export class NavComponent implements OnInit {
 
   login = false;
 
+  authority! : string;
+
   constructor(
     private router: Router
   ) {
@@ -22,6 +24,8 @@ export class NavComponent implements OnInit {
           this.login = false;
         }
       }
+
+      this.authority = JSON.parse(localStorage.getItem("user")+"").authority;
     });
   }
 
